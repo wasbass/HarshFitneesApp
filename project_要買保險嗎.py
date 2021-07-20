@@ -134,7 +134,6 @@ dec=0               #減少熱量
 
 #預留區塊
 label_sec1=tk.Label(bg="violet",font="微軟正黑體 15")
-#label_sec1.config(bg="violet",font="微軟正黑體 15")
 label_sec2=tk.Label(bg="violet")
 label_sec3=tk.Label(bg="violet")
 en_sec1=tk.Entry()
@@ -294,9 +293,7 @@ def sports():
                 global cal,dec,cal_over
                 cal-=cos
                 dec+=cos
-                cal_over=True
-                if basic_energe>=cal:
-                    cal_over=False
+                isoverfat()
                 updateword()
                 Cancel("Sports")
     def Ok2():
