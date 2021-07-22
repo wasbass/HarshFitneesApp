@@ -1,3 +1,5 @@
 *.txt
 chromedriver.exe
 .Rhistory
+chang.csv
+.gitignore

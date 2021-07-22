@@ -1,28 +1,27 @@
+{
 library("jiebaR")
 library(tm)
 library(tmcn)
-library(stringr)
 library(dplyr)
-library(xlsx)
-library(readxl)
-library(ggplot2)
 library(wordcloud2)
-library(devtools)
-
+library(readxl)
+}
 getwd()
-setwd("D:/python/應用程式/appproject") #設在檔案在的位置
-L <- read.csv( "chang.csv" ,encoding = "UTF-8", header = 0)
+setwd("D:/python/appproject") #設在檔案在的位置
+#L <- read.csv("chang.csv" , sep = "," ,fileEncoding = "UTF-8",header = 0)
+L <- read_excel("chang.xlsx", col_names = T)[5]
+
 
 autocc <- function(L){
   cc = worker()
-  keep <- c()
-  #new_user_word(cc, keep)可放入要加入的特定詞語
+  keep <- c("柯文哲","柯市長")
+  new_user_word(cc, keep)#可放入要加入的特定詞語
+  
   L.cc <- cc[as.character(L$content)]
   L.df <- data.frame(table(L.cc))
   
   L.df %>%
     filter(nchar(as.character(L.cc)) > 1) -> L.df
-  
   
   #stopword <- c()
   
@@ -30,12 +29,13 @@ autocc <- function(L){
   #L.df <- L.df[L.df$L.cc != j,]
   #}可刪除特定詞語
   
-  
   L.fn <- L.df[order(L.df$Freq,decreasing = TRUE),]
   return(L.fn)
 }
-hot50  <- function(H){wordcloud2(head(H,50))}
 
-colnames(L)[4] = "content"
-L.data = autocc(L)
-hot50(L.data)
+hot <- function(H,count){wordcloud2(head(H,count),shape = "star" , size = 1)}
+
+#colnames(L)[1] = "content"
+L_data = autocc(L)
+hot(L_data,100)
+
