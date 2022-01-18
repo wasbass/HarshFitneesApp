@@ -1,3 +1,3 @@
 #HarshFitneesApp
-從大三作業改良得到的減肥app，搭配Food和Sport服用
-
+An revised version of a final project from "Programming 101".
+You can used it to getting fitness with the associated file "Food" and "Sport".
